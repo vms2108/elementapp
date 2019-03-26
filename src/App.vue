@@ -4,10 +4,8 @@
       <el-header class="header">
       <div class="line"></div>
       <el-menu
-        :default-active="activeIndex2"
         class="el-menu-demo"
         mode="horizontal"
-        @select="handleSelect"
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b">
@@ -23,7 +21,39 @@
       </el-header>
       <el-container>
         <el-container>
-          <el-main class="main">Main</el-main>
+          <el-main class="main">
+            <el-container>
+              <el-button>Вернуться</el-button>
+            </el-container>
+            <el-container>
+              <el-button icon="el-icon-search" round type="primary" v-on:click="searchOpen">Найти</el-button> 
+              <el-button icon="el-icon-edit" round type="success" v-on:click="createOpen">Создать заёмщика</el-button>
+            </el-container>
+            <el-form label-width="100px" class="form" v-if="searchVisible">
+              <el-form-item label="Фамилия">
+                <el-input v-model="formSearch.surname"></el-input>
+              </el-form-item>
+              <el-form-item label="Имя">
+                <el-input v-model="formSearch.name"></el-input>
+              </el-form-item>
+              <el-form-item label="Отчество">
+                <el-input v-model="formSearch.patronymic"></el-input>
+              </el-form-item>
+              <el-button round>Найти</el-button>
+            </el-form>
+            <el-form label-width="100px" class="form" v-if="createVisible">
+              <el-form-item label="Фамилия">
+                <el-input v-model="formSearch.surname"></el-input>
+              </el-form-item>
+              <el-form-item label="Имя">
+                <el-input v-model="formSearch.name"></el-input>
+              </el-form-item>
+              <el-form-item label="Отчество">
+                <el-input v-model="formSearch.patronymic"></el-input>
+              </el-form-item>
+              <el-button round>Создать</el-button>
+            </el-form>
+          </el-main>
           <el-footer class="footer">Footer</el-footer>
         </el-container>
       </el-container>
@@ -33,7 +63,29 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  
+  data() {
+    return {
+      formSearch: {
+        surname: '',
+        name: '',
+        patronymic: ''
+      },
+      searchVisible: false,
+      createVisible: false
+    };
+  },
+  methods: {
+    searchOpen: function() {
+      this.searchVisible = true;
+      this.createVisible = false;
+    },
+    createOpen: function() {
+      this.createVisible = true;
+      this.searchVisible = false;
+    },
+  }
 }
 </script>
 
@@ -42,10 +94,9 @@ $mainColor: #3DBBE6;
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $mainColor;
 }
 .el-container {
-  height: 100vh;
+  margin-bottom: 20px;
 }
 .header {
  background: rgb(84, 92, 100);
@@ -54,7 +105,13 @@ $mainColor: #3DBBE6;
   
 }
 .footer {
-  background: $mainColor;
+  background: rgb(84, 92, 100);
   color: #fff;
+}
+.form {
+  width: 450px;
+  padding: 20px;
+  border: 1px solid rgb(84, 92, 100);
+  border-radius: 15px;
 }
 </style>
