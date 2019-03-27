@@ -1,0 +1,57 @@
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.el-container {
+  margin-bottom: 20px;
+}
+.header {
+  background: rgb(84, 92, 100);
+}
+.footer {
+  background: rgb(84, 92, 100);
+  color: #fff;
+}
+.form {
+  z-index: 2;
+  position: absolute;
+  width: 400px;
+  padding: 20px;
+  border: 1px solid rgb(84, 92, 100);
+  border-radius: 15px;
+  background: #fff;
+  &__close {
+    position: absolute;
+    right: -30px;
+    top: 0px;
+    width: 25px;
+    height: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 0px;
+      width: 25px;
+      height: 2px;
+      background: red;
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+.table {
+  margin-right: 30px;
+  color: black;
+}
+

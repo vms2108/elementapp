@@ -1,0 +1,137 @@
+<el-main class="main">
+    <el-container> 
+        <el-button>Вернуться</el-button>
+    </el-container>
+    <el-container>
+        <el-button icon="el-icon-search" round type="primary" v-on:click="searchOpen">Найти</el-button> 
+        <el-button icon="el-icon-edit" round type="success" v-on:click="createOpen">Создать заёмщика</el-button>
+    </el-container>
+    <el-form label-width="100px" class="form" v-if="searchVisible">
+        <el-form-item label="Фамилия">
+        <el-input v-model="formSearch.surname"></el-input>
+        </el-form-item>
+        <el-form-item label="Имя">
+        <el-input v-model="formSearch.name"></el-input>
+        </el-form-item>
+        <el-form-item label="Отчество">
+        <el-input v-model="formSearch.patronymic"></el-input>
+        </el-form-item>
+        <el-button round>Найти</el-button>
+        <button circle class="form__close" v-on:click="closeWindow"></button>
+    </el-form>
+    <el-form label-width="100px" class="form" v-if="createVisible">
+        <el-form-item label="Фамилия">
+        <el-input v-model="formSearch.surname"></el-input>
+        </el-form-item>
+        <el-form-item label="Имя">
+        <el-input v-model="formSearch.name"></el-input>
+        </el-form-item>
+        <el-form-item label="Отчество">
+        <el-input v-model="formSearch.patronymic"></el-input>
+        </el-form-item>
+        <el-button round>Создать</el-button>
+        <button circle class="form__close" v-on:click="closeWindow"></button>
+    </el-form>
+    <el-container>
+        <el-table
+        class="table"
+        :data="borrowersData" 
+        :border="true"
+        :padding="0"
+        @row-click="rowClick($event)">
+            <el-table-column
+                prop="ID"
+                label="ID"
+                width="50">
+            </el-table-column>
+            <el-table-column
+                prop="fullName"
+                label="ФИО"
+                width="220">
+            </el-table-column>
+            <el-table-column
+                prop="days"
+                label="Дней просрочки"
+                width="130">
+            </el-table-column>
+            <el-table-column
+                prop="number"
+                label="№ паспорта"
+                width="100">
+            </el-table-column>
+            <el-table-column
+                prop="region"
+                label="Город"
+                width="150">
+            </el-table-column>
+            <el-table-column
+                prop="body"
+                label="Тело займа"
+                width="100">
+            </el-table-column>
+            <el-table-column
+                prop="persent"
+                label="%"
+                width="70">
+            </el-table-column>
+            <el-table-column
+                prop="bodyPersent"
+                label="Тело займа+%+штрафы"
+                width="200">
+            </el-table-column>
+        </el-table>
+        <el-table :data="tableHistory" style="width: 100%">
+                <el-table-column
+                type="expand"
+                width="30">
+                <template slot-scope="props">
+                    <el-table :data="props.row.operations" style="width: 100%"> 
+                        <el-table-column
+                            type="date"
+                            label="Дата">
+                        </el-table-column>
+                        <el-table-column
+                            type="operation"
+                            label="Операция">
+                        </el-table-column>
+                        <el-table-column
+                            type="amount"
+                            label="Сумма">
+                        </el-table-column>
+                    </el-table>
+                </template>
+                </el-table-column>
+                <el-table-column
+                    prop="date"
+                    label="Дата"
+                    width="100">
+                </el-table-column>
+                <el-table-column
+                    prop="term"
+                    label="Срок"
+                    width="100">
+                </el-table-column>
+                <el-table-column
+                    prop="dateMaturity"
+                    label="Дата пог."
+                    width="100">
+                </el-table-column>
+                <el-table-column
+                    prop="persent"
+                    label="%"
+                    width="80">
+                </el-table-column>
+                <el-table-column
+                    prop="sumPersent"
+                    label="Сумма + %"
+                    width="100">
+                </el-table-column>
+                <el-table-column
+                    prop="status"
+                    label="Статус"
+                    width="100">
+                </el-table-column>
+            </el-table>
+    </el-container>
+    
+</el-main>
