@@ -55,3 +55,20 @@
   color: black;
 }
 
+.addition-table {
+  color: black;
+  & td {
+    padding: 0 10px;
+  }
+  & tr {
+    border-bottom: 1px solid black !important;
+  }
+  & th {
+    text-align: center;
+  }
+}
+
+.el-table__expanded-cell[class*=cell]{
+  padding: 0;
+}
+

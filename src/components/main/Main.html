@@ -81,24 +81,22 @@
             </el-table-column>
         </el-table>
         <el-table :data="tableHistory" style="width: 100%">
-                <el-table-column
-                type="expand"
-                width="30">
+                <el-table-column type="expand" width="30">
                 <template slot-scope="props">
-                    <el-table :data="props.row.operations" style="width: 100%"> 
-                        <el-table-column
-                            type="date"
-                            label="Дата">
-                        </el-table-column>
-                        <el-table-column
-                            type="operation"
-                            label="Операция">
-                        </el-table-column>
-                        <el-table-column
-                            type="amount"
-                            label="Сумма">
-                        </el-table-column>
-                    </el-table>
+                    <table v-if="props.row.operations.length != 0" class="addition-table">
+                        <tr>
+                            <th></th>
+                            <th>Дата</th>
+                            <th>Операция</th>
+                            <th>Сумма</th>
+                        </tr>
+                        <tr v-for="(item, index) in props.row.operations">
+                            <td>{{index + 1}}</td>
+                            <td>{{item.date}}</td>
+                            <td>{{item.operation}}</td>
+                            <td>{{item.amount}}</td>
+                        </tr>
+                    </table>
                 </template>
                 </el-table-column>
                 <el-table-column
