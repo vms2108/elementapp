@@ -1,4 +1,6 @@
-<template src='./Main.html'></template>
-<script src='./Main.js'></script>
-<style lang="scss">
+<template>
+    <div>Главная</div>
+</template>
+<script></script>
+<style lang="scss" scoped>
 </style>
